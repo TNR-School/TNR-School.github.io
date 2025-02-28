@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="TNR.css">
+    <title>புகைப்பட தொகுப்பு</title>
+</head>
+<body>
+
+<header>
+    <div class="left-text">தோற்றம்:1886</div>
+    <h1>T.N.R அரசு உதவி பெறும் தொடக்கப்பள்ளி</h1>
+    <div class="right-text">நூற்றாண்டு:1986</div>
+</header>
+
+<nav>
+    <a href="History.html">வரலாறு</a>
+    <a href="index.html">எமது பள்ளி</a>
+    <a href="PhotoGallerly.html">புகைப்பட தொகுப்பு</a>
+    <a href="Contact.html">தொடர்புக்கு</a>
+</nav>
+    
+
+<main>
+    <div class="gallery-container">
+        <div class="gallery" id="gallery"></div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+</main>
+
+<footer>
+    <p>Copyrights T.N.R Primary School @2025</p>
+</footer>
+<script>
+    let index = 0;
+    const gallery = document.getElementById("gallery");
+    // Load images dynamically from folder
+    for(var idx=1;idx<=34;idx++)
+    {
+        let img = document.createElement("img");
+        img.src = "Gallery/" + idx +".jpg";
+        img.alt = "Gallery Image";
+        gallery.appendChild(img);
+    };
+
+    const slides = document.querySelectorAll(".gallery img");
+    const totalSlides = slides.length;
+
+    function showSlide(i) {
+        index = (i + totalSlides) % totalSlides;
+        gallery.style.transform = `translateX(${-index * 500}px)`;
+    }
+
+    function nextSlide() {
+        showSlide(index + 1);
+    }
+
+    function prevSlide() {
+        showSlide(index - 1);
+    }
+
+    function autoSlide() {
+        nextSlide();
+        setTimeout(autoSlide, 3000);
+    }
+
+    setTimeout(autoSlide, 3000);
+</script>
+</body>
+</html>
